@@ -1,3 +1,4 @@
+[![Rust](https://github.com/RGGH/state_demo/actions/workflows/rust.yml/badge.svg)](https://github.com/RGGH/state_demo/actions/workflows/rust.yml)
 # App State
 Rust, State, Axum
 
