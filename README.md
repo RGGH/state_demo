@@ -14,16 +14,16 @@ Rust, State, Axum
 
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-❯ curl http://localhost:3000
+####❯ curl http://localhost:3000
 
-Hello, world! (Counter: 0)%                                                                                                    
+Hello, world! (Counter: 0)                                                                                                   
  ~/Documents/rust/demo_state  version2                                                                          08:58:45 pm 
 ❯ 
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Counter incremented to: 3%                                                                                                     
+Counter incremented to: 3                                                                                                    
  ~/Documents/rust/demo_state  version2                                                                          08:58:58 pm 
-❯ curl -X POST http://localhost:3000/increment
+####❯ curl -X POST http://localhost:3000/increment
 
 
 
