@@ -14,15 +14,15 @@ Rust, State, Axum
      
 ──────────────────────────────────────────────────────────────
 
-curl http://localhost:3000
-
-Hello, world! (Counter: 0)                                                                                                   
+    curl http://localhost:3000
+    
+    Hello, world! (Counter: 0)                                                                                                   
 
 ──────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3000/increment
-
-Counter incremented to: 2                                                                                                  
+    curl -X POST http://localhost:3000/increment
+    
+    Counter incremented to: 2                                                                                                  
 
 
 
