@@ -1,9 +1,8 @@
-use anyhow::{Result, Error};
-use std::sync::Arc;
-
-use axum::{extract::State, routing::{get,post},  Router};
+use anyhow::{Error, Result};
 use axum::response::IntoResponse;
+use std::sync::{Arc, Mutex};
 
+use axum::{extract::State, routing::{get,post}, Router};
 
 #[derive(Clone)]
 struct AppState {
@@ -11,22 +10,23 @@ struct AppState {
     counter: usize,
 }
 
-async fn hello_world(State(state): State<Arc<AppState>>) -> impl IntoResponse {
+async fn hello_world(State(state): State<Arc<Mutex<AppState>>>) -> impl IntoResponse {
+    let state = state.lock().unwrap();
     format!("{} (Counter: {})", state.msg, state.counter)
 }
 
-async fn increment_counter(State(mut state): State<Arc<AppState>>) -> impl IntoResponse {
-    // Increment the counter in the shared state
-    Arc::make_mut(&mut state).counter += 1;
+async fn increment_counter(State(state): State<Arc<Mutex<AppState>>>) -> impl IntoResponse {
+    let mut state = state.lock().unwrap();
+    state.counter += 1;
     format!("Counter incremented to: {}", state.counter)
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let state = Arc::new(AppState {
+    let state = Arc::new(Mutex::new(AppState {
         msg: "Hello, world!",
         counter: 0,
-    });
+    }));
 
     let router = Router::new()
         .route("/", get(hello_world))
@@ -39,4 +39,3 @@ async fn main() -> Result<(), Error> {
 
     Ok(())
 }
-
